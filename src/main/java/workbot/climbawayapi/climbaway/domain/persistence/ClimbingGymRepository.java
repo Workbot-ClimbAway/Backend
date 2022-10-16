@@ -15,4 +15,10 @@ public interface ClimbingGymRepository extends JpaRepository<ClimbingGym, Long> 
 
     @Query(value ="SELECT c FROM ClimbingGym c")
     List<ClimbingGym> getAll();
+
+    //createClimbingGymCategory
+
+
+    @Query(value ="SELECT cg FROM ClimbingGym cg Join fetch cg.categories c WHERE c.id = ?1")
+    List<ClimbingGym> findClimbingGymsByCategoryId(long id);
 }

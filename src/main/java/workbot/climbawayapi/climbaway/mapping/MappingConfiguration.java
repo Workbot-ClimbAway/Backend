@@ -9,4 +9,8 @@ public class MappingConfiguration {
     public ClimbingGymMapper climbingGymMapper(){
         return new ClimbingGymMapper();
     }
+    @Bean
+    public CategoryMapper categoryMapper(){
+        return new CategoryMapper();
+    }
 }

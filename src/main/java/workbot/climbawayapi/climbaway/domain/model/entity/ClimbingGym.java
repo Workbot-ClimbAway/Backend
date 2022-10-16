@@ -1,11 +1,15 @@
 package workbot.climbawayapi.climbaway.domain.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "climbing_gyms")
@@ -15,6 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ClimbingGym implements Serializable {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -57,4 +62,11 @@ public class ClimbingGym implements Serializable {
     @NotBlank
     @Column(name = "logo")
     private String logo_url;
+
+    // Relationships
+    @ManyToMany
+    @JoinTable(name = "climbing_gyms_categories",
+            joinColumns = @JoinColumn(name = "climbing_gym_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 }
