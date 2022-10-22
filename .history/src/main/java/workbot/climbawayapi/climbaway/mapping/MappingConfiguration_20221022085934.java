@@ -18,7 +18,5 @@ public class MappingConfiguration {
         return new NotificationMapper();
     }
     @Bean
-    public ScalersMapper scalersMapper(){
-        return new ScalersMapper();
-    }
+    
 }
