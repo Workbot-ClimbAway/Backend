@@ -3,7 +3,7 @@ package workbot.climbawayapi.climbaway.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.NotificationService;
-import workbot.climbawayapi.climbaway.mapping.NotificationMapper;
+import workbot.climbawayapi.climbaway.mapping.NotificationsMapper;
 import workbot.climbawayapi.climbaway.resource.NotificationResource;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationService notificationService;
-    private final NotificationMapper notificationMapper;
+    private final NotificationsMapper notificationMapper;
 
-    public NotificationController(NotificationService notificationService, NotificationMapper notificationMapper) {
+    public NotificationController(NotificationService notificationService, NotificationsMapper notificationMapper) {
         this.notificationService = notificationService;
         this.notificationMapper = notificationMapper;
     }

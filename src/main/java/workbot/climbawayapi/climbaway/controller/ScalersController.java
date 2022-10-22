@@ -3,7 +3,7 @@ package workbot.climbawayapi.climbaway.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.ClimbingGymService;
-import workbot.climbawayapi.climbaway.mapping.NotificationMapper;
+import workbot.climbawayapi.climbaway.mapping.NotificationsMapper;
 import workbot.climbawayapi.climbaway.mapping.ScalersMapper;
 import workbot.climbawayapi.climbaway.resource.NotificationResource;
 import workbot.climbawayapi.climbaway.resource.ScalersResource;
@@ -17,10 +17,10 @@ import java.util.List;
 public class ScalersController {
 
     private final ScalersService scalersService;
-    private final NotificationMapper notificationMapper;
+    private final NotificationsMapper notificationMapper;
     private final ScalersMapper scalersMapper;
 
-    public ScalersController(ScalersService scalersService, NotificationMapper notificationMapper, ScalersMapper scalersMapper) {
+    public ScalersController(ScalersService scalersService, NotificationsMapper notificationMapper, ScalersMapper scalersMapper) {
         this.scalersService = scalersService;
         this.notificationMapper = notificationMapper;
         this.scalersMapper = scalersMapper;

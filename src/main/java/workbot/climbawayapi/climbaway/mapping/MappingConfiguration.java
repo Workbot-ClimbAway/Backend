@@ -14,8 +14,8 @@ public class MappingConfiguration {
         return new CategoryMapper();
     }
     @Bean
-    public NotificationMapper notificationMapper(){
-        return new NotificationMapper();
+    public NotificationsMapper notificationMapper(){
+        return new NotificationsMapper();
     }
     @Bean
     public ScalersMapper scalersMapper(){

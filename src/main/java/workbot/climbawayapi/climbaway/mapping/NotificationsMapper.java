@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NotificationMapper implements Serializable {
+public class NotificationsMapper implements Serializable {
 
     @Autowired
     EnhancedModelMapper mapper;

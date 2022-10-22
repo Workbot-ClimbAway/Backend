@@ -1,6 +1,8 @@
 package workbot.climbawayapi.climbaway.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,8 +39,7 @@ public class Notification implements Serializable {
     @Column(name = "scaler_id")
     private Long scalerId;
 
-
-    @JsonBackReference
-    @ManyToOne(mappedBy = "notification", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Scalers> scalers = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "scaler",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Notification>  notifications;
 }

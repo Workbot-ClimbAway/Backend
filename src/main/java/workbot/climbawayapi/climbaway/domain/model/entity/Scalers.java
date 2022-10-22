@@ -57,4 +57,9 @@ public class Scalers implements Serializable {
     @NotBlank
     @Column(name = "email")
     private String email;
+
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "scaler_id")
+    private Scalers scaler;
 }

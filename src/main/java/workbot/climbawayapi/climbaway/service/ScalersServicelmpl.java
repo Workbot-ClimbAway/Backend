@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.Notification;
 import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
 import workbot.climbawayapi.climbaway.domain.persistence.NotificationRepository;
-import workbot.climbawayapi.climbaway.domain.persistence.NotificationRepository;
 import workbot.climbawayapi.climbaway.domain.service.NotificationService;
+import workbot.climbawayapi.climbaway.domain.service.ScalersService;
 import workbot.climbawayapi.shared.exception.ResourceNotFoundException;
 import workbot.climbawayapi.shared.exception.ResourceValidationException;
 
@@ -18,7 +18,7 @@ import static org.hibernate.usertype.DynamicParameterizedType.ENTITY;
 
 
 @Service
-public class ScalersServicelmpl implements ClimbingGymService {
+public class ScalersServicelmpl implements ScalersService {
 
     private final NotificationRepository scalersRepository;
     private final ScalersRepository scalersRepository;
