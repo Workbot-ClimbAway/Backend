@@ -10,8 +10,7 @@ public interface NotificationService {
 
     List<Notification> getAll();
     Notification findById(long id); 
-    List<Notification> findByUserId(long id); // Find all notifications for a scalers
-    Notification create(Notification notification);
-    Notification update(long id, Notification notification);
+    List<Notification> findByScalerId(long id);
+    Notification create(Notification notification, long scalerId);
     Notification delete(long id);
 }

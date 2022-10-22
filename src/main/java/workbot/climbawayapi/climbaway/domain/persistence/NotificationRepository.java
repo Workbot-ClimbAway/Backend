@@ -10,11 +10,9 @@ import java.util.List;
 @Qualifier("notificationRepository")
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
-
     Notification findById(long id);
     @Query(value ="SELECT n FROM Notification n ")
     List<Notification> getAll();
-
-    @Query(value ="SELECT n FROM Notification n WHERE n.scalers.id = ?1")
-    List<Notification> findByUserId(long id);
+    @Query(value ="SELECT n FROM Notification n WHERE n.scalerId = ?1")
+    List<Notification> findByScalerId(long id);
 }

@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.NotificationService;
 import workbot.climbawayapi.climbaway.mapping.NotificationsMapper;
 import workbot.climbawayapi.climbaway.resource.NotificationResource;
+import workbot.climbawayapi.climbaway.resource.SaveNotificationResource;
 
 import java.util.List;
 
 @Controller
 @RestController
 @RequestMapping("/api/v1/notification")
-
 public class NotificationController {
-
     private final NotificationService notificationService;
     private final NotificationsMapper notificationMapper;
 
@@ -32,19 +31,14 @@ public class NotificationController {
         return notificationMapper.toResource(notificationService.findById(id));
     }
 
-    @GetMapping(value = "/scalers-controller/{id}")
+    @GetMapping(value = "/scarlerId/{id}")
     public List<NotificationResource> findNotificationsByUserId(@PathVariable Long id){
-        return notificationMapper.toResource(notificationService.findByUserId(id));
+        return notificationMapper.toResource(notificationService.findByScalerId(id));
     }
 
     @PostMapping
-    public NotificationResource createNotification(@RequestBody NotificationResource resource){
-        return notificationMapper.toResource(notificationService.create(notificationMapper.toModel(resource)));
-    }
-
-    @PutMapping(value = "/{id}")
-    public NotificationResource updateNotification(@PathVariable Long id, @RequestBody NotificationResource resource){
-        return notificationMapper.toResource(notificationService.update(id, notificationMapper.toModel(resource)));
+    public NotificationResource createNotification(@RequestBody SaveNotificationResource resource, @RequestParam Long id){
+        return notificationMapper.toResource(notificationService.create(notificationMapper.toModelSaveResource(resource),id));
     }
 
     @DeleteMapping(value = "/{id}")

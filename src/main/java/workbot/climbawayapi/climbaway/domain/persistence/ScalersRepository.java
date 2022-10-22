@@ -12,15 +12,12 @@ import java.util.List;
 
 @Qualifier("scalersRepository")
 @Repository
-public interface ScalersRepository extends JpaRepository<Notification, Long> {
+public interface ScalersRepository extends JpaRepository<Scalers, Long> {
 
     Scalers findById(long id);
 
     @Query(value ="SELECT s FROM Scalers s ")
     List<Scalers> getAll();
-
-    @Query(value ="SELECT s FROM Scalers s WHERE s.email = ?1")
-    Boolean findByEmail(String email);
 
     @Query(value ="SELECT s FROM Scalers s WHERE s.email = ?1 AND s.password = ?2")
     Scalers findByEmailAndPassword(String email, String password);

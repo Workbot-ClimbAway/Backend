@@ -1,6 +1,7 @@
 package workbot.climbawayapi.climbaway.mapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import workbot.climbawayapi.climbaway.domain.model.entity.Notification;
 import workbot.climbawayapi.climbaway.resource.NotificationResource;
 import workbot.climbawayapi.climbaway.resource.SaveNotificationResource;
@@ -11,9 +12,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NotificationsMapper implements Serializable {
-
     @Autowired
     EnhancedModelMapper mapper;
 
+    //Object Mapping
 
+    public NotificationResource toResource(Notification model){
+        return mapper.map(model, NotificationResource.class);
+    }
+
+    public Notification toModelSaveResource(SaveNotificationResource resource) {
+        return mapper.map(resource, Notification.class);
+    }
+    //List Mapping
+
+    public List<NotificationResource> toResource(List<Notification> models){
+        return models.stream().map(this::toResource).collect(Collectors.toList());
+    }
 }

@@ -25,10 +25,6 @@ public class ClimbingGymMapper implements Serializable {
         return mapper.map(model, ClimbingGym.class);
     }
 
-    public ClimbingGym toModel(ClimbingGymResource resource) {
-        return mapper.map(resource, ClimbingGym.class);
-    }
-
     //List Mapping
 
     public List<ClimbingGymResource> toResource(List<ClimbingGym> models){

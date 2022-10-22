@@ -49,8 +49,8 @@ public class ClimbingGymController {
     }
 
     @PutMapping(value = "/{id}")
-    public ClimbingGymResource updateClimbingGym(@PathVariable Long id, @RequestBody ClimbingGymResource climbingGymResource){
-        return climbingGymMapper.toResource(climbingGymService.update(id, climbingGymMapper.toModel(climbingGymResource)));
+    public ClimbingGymResource updateClimbingGym(@PathVariable Long id, @RequestBody SaveClimbingGymResource climbingGymResource){
+        return climbingGymMapper.toResource(climbingGymService.update(id, climbingGymMapper.toModelSaveResource(climbingGymResource)));
     }
 
     @DeleteMapping(value = "/{id}")

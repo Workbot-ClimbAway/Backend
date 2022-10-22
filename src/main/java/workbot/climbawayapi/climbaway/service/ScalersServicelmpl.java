@@ -1,10 +1,8 @@
 package workbot.climbawayapi.climbaway.service;
 
 import org.springframework.stereotype.Service;
-import workbot.climbawayapi.climbaway.domain.model.entity.Notification;
 import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
-import workbot.climbawayapi.climbaway.domain.persistence.NotificationRepository;
-import workbot.climbawayapi.climbaway.domain.service.NotificationService;
+import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
 import workbot.climbawayapi.climbaway.domain.service.ScalersService;
 import workbot.climbawayapi.shared.exception.ResourceNotFoundException;
 import workbot.climbawayapi.shared.exception.ResourceValidationException;
@@ -20,9 +18,77 @@ import static org.hibernate.usertype.DynamicParameterizedType.ENTITY;
 @Service
 public class ScalersServicelmpl implements ScalersService {
 
-    private final NotificationRepository scalersRepository;
     private final ScalersRepository scalersRepository;
     private final Validator validator;
 
-    //COMPLETAR
+    public ScalersServicelmpl(ScalersRepository scalersRepository, Validator validator) {
+        this.scalersRepository = scalersRepository;
+        this.validator = validator;
+    }
+
+    @Override
+    public List<Scalers> getAll() {
+        return scalersRepository.getAll();
+    }
+
+    @Override
+    public Scalers findById(long id) {
+        var isExisting = scalersRepository.findById(id);
+        if (isExisting == null) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+        return isExisting;
+    }
+
+    @Override
+    public Scalers create(Scalers scalers) {
+        System.out.println(scalers.getCity());
+        System.out.println(scalers.getUrl_photo());
+        System.out.println(scalers.getDistrict());
+        System.out.println(scalers.getLastName());
+        System.out.println(scalers.getFirstName());
+        System.out.println(scalers.getEmail());
+        System.out.println(scalers.getPassword());
+        Set<ConstraintViolation<Scalers>> violations = validator.validate(scalers);
+        if(!violations.isEmpty())
+            throw new ResourceValidationException(ENTITY, violations);
+        scalers.setNotifications(null);
+        return scalersRepository.save(scalers);
+    }
+
+    @Override
+    public Scalers findByEmailAndPassword(String email, String password) {
+        var isExisting = scalersRepository.findByEmailAndPassword(email,password);
+        if (isExisting == null) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+        return isExisting;
+    }
+
+    @Override
+    public Scalers update(long id, Scalers scalers) {
+        var scalerUpdate = scalersRepository.findById(id);
+        if (scalerUpdate == null) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+        scalerUpdate.setFirstName(scalers.getFirstName());
+        scalerUpdate.setLastName(scalers.getLastName());
+        scalerUpdate.setPassword(scalers.getPassword());
+        scalerUpdate.setCity(scalers.getCity());
+        scalerUpdate.setDistrict(scalers.getDistrict());
+        scalerUpdate.setUrl_photo(scalers.getUrl_photo());
+        scalerUpdate.setEmail(scalers.getEmail());
+
+        return scalersRepository.save(scalerUpdate);
+    }
+
+    @Override
+    public Scalers delete(long id) {
+        var isExisting = scalersRepository.findById(id);
+        if (isExisting == null) {
+            throw new ResourceNotFoundException("Notification not found");
+        }
+        scalersRepository.deleteById(id);
+        return isExisting;
+    }
 }

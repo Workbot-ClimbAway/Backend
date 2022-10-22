@@ -14,7 +14,4 @@ public class SaveNotificationResource {
     @Size(max = 100)
     private String mensaje;
 
-    @NotBlank
-    @Size(max = 100)
-    private Long scaler_id;
 }

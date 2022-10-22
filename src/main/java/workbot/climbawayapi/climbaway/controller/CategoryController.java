@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.CategoryService;
 import workbot.climbawayapi.climbaway.mapping.CategoryMapper;
 import workbot.climbawayapi.climbaway.resource.CategoryResource;
+import workbot.climbawayapi.climbaway.resource.SaveCategoryResource;
 
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public CategoryResource createCategory(@RequestBody CategoryResource resource){
-        return categoryMapper.toResource(categoryService.create(categoryMapper.toModel(resource)));
+    public CategoryResource createCategory(@RequestBody SaveCategoryResource resource){
+        return categoryMapper.toResource(categoryService.create(categoryMapper.toModelSaveResource(resource)));
     }
 
     @PutMapping(value = "/{id}")
-    public CategoryResource updateCategory(@PathVariable Long id, @RequestBody CategoryResource resource){
-        return categoryMapper.toResource(categoryService.update(id, categoryMapper.toModel(resource)));
+    public CategoryResource updateCategory(@PathVariable Long id, @RequestBody SaveCategoryResource resource){
+        return categoryMapper.toResource(categoryService.update(id, categoryMapper.toModelSaveResource(resource)));
     }
 
     @DeleteMapping(value = "/{id}")

@@ -11,11 +11,11 @@ import javax.validation.constraints.Size;
 public class SaveScalersResource {
     @NotBlank
     @Size(max = 100)
-    private String first_name;
+    private String firstName;
 
     @NotBlank
     @Size(max = 100)
-    private String last_name;
+    private String lastName;
 
     @NotBlank
     @Size(max = 100)

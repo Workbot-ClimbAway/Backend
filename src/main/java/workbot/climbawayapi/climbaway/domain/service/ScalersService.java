@@ -12,11 +12,9 @@ import java.util.List;
 
 @Service
 public interface ScalersService {
-
-    List<Scalers> getAll(); // Get all scalers to list
+    List<Scalers> getAll();
     Scalers findById(long id); 
-    Scalers create(Scalers scalers); // ADD SCALER
-    Boolean findByEmail(String email);
+    Scalers create(Scalers scalers);
     Scalers findByEmailAndPassword(String email, String password);
     Scalers update(long id, Scalers scalers);
     Scalers delete(long id);

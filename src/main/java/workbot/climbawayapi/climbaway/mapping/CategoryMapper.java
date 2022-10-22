@@ -20,10 +20,6 @@ public class CategoryMapper implements Serializable {
         return mapper.map(model, CategoryResource.class);
     }
 
-    public Category toModel(CategoryResource resource) {
-        return mapper.map(resource, Category.class);
-    }
-
     public Category toModelSaveResource(SaveCategoryResource resource) {
         return mapper.map(resource, Category.class);
     }

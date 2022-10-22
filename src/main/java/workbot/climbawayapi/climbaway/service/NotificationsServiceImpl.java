@@ -1,6 +1,7 @@
 package workbot.climbawayapi.climbaway.service;
 
 import org.springframework.stereotype.Service;
+import workbot.climbawayapi.climbaway.domain.model.entity.ClimbingGym;
 import workbot.climbawayapi.climbaway.domain.model.entity.Notification;
 import workbot.climbawayapi.climbaway.domain.persistence.NotificationRepository;
 import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
@@ -16,13 +17,13 @@ import java.util.Set;
 import static org.hibernate.usertype.DynamicParameterizedType.ENTITY;
 
 @Service
-public class NotificationServicelmpl implements NotificationService {
+public class NotificationsServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
     private final ScalersRepository scalersRepository;
     private final Validator validator;
 
-    public NotificationServicelmpl(NotificationRepository notificationRepository, ScalersRepository scalersRepository, Validator validator) {
+    public NotificationsServiceImpl(NotificationRepository notificationRepository, ScalersRepository scalersRepository, Validator validator) {
         this.notificationRepository = notificationRepository;
         this.scalersRepository = scalersRepository;
         this.validator = validator;
@@ -32,57 +33,46 @@ public class NotificationServicelmpl implements NotificationService {
     public List<Notification> getAll() {
         return notificationRepository.getAll();
     }
+
     @Override
     public Notification findById(long id) {
+
         var isExisting = notificationRepository.findById(id);
         if (isExisting == null) {
             throw new ResourceNotFoundException("Notification not found");
         }
         return notificationRepository.findById(id);
     }
+
     @Override
-    public List<Notification> findByScalersId(long id) {
+    public List<Notification> findByScalerId(long id) {
         var isExisting = scalersRepository.findById(id);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Scalers not found");
+            throw new ResourceNotFoundException("Scaler not found");
         }
-        return notificationRepository.findByScalersId(id);
-    }
-    @Override
-    public Notification create(Notification notification) {
-        Set<ConstraintViolation<Notification>> violations = validator.validate(notification);
-        if(!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-        return notificationRepository.create(notification);
+        return notificationRepository.findByScalerId(id);
     }
 
     @Override
-    public Notification update(Notification notification) {
+    public Notification create(Notification notification, long scalerId) {
+        var isExisting = scalersRepository.findById(scalerId);
+        if (isExisting == null) {
+            throw new ResourceNotFoundException("Scaler not found");
+        }
+        notification.setScalerId(scalerId);
         Set<ConstraintViolation<Notification>> violations = validator.validate(notification);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-        return notificationRepository.update(notification);
+        return notificationRepository.save(notification);
     }
+
     @Override
-    public void delete(long id) {
+    public Notification delete(long id) {
         var isExisting = notificationRepository.findById(id);
         if (isExisting == null) {
             throw new ResourceNotFoundException("Notification not found");
         }
-        notificationRepository.delete(id);
+        notificationRepository.deleteById(id);
+        return isExisting;
     }
-
-    @Override
-    public List<Notification> findByUserId(long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Notification update(long id, Notification notification) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
 }
