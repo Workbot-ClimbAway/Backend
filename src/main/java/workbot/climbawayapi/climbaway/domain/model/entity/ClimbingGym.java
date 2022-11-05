@@ -1,6 +1,6 @@
 package workbot.climbawayapi.climbaway.domain.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -69,4 +69,42 @@ public class ClimbingGym implements Serializable {
             joinColumns = @JoinColumn(name = "climbing_gym_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    // Favorites
+    @ManyToMany
+    @JoinTable(name = "favorites",
+            joinColumns = @JoinColumn(name = "climbing_gym_id"),
+            inverseJoinColumns = @JoinColumn(name = "scaler_id"))
+    private Set<Scalers> scaler = new HashSet<>();
+
+    // New_news
+    @JsonIgnore
+    @OneToMany(mappedBy = "climbingGym",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<News> new_news;
+
+    // Comments
+    @JsonIgnore
+    @OneToMany(mappedBy = "climbingGym",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
+    //Images
+    @JsonIgnore
+    @OneToMany(mappedBy = "climbingGym",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
+
+    //Leagues
+    @JsonIgnore
+    @OneToMany(mappedBy = "climbingGym",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<League> leagues;
+
+    //Climbers-leagues
+    @JsonIgnore
+    @OneToMany(mappedBy = "climbingGym",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Member> memberLeagues;
+
+    //Features
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "feature_id", referencedColumnName = "id")
+    private Feature feature;
 }

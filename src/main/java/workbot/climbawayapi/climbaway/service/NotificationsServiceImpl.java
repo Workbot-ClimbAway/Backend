@@ -60,6 +60,7 @@ public class NotificationsServiceImpl implements NotificationService {
             throw new ResourceNotFoundException("Scaler not found");
         }
         notification.setScalerId(scalerId);
+        notification.setScaler(isExisting);
         Set<ConstraintViolation<Notification>> violations = validator.validate(notification);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);

@@ -21,4 +21,6 @@ public interface ScalersRepository extends JpaRepository<Scalers, Long> {
 
     @Query(value ="SELECT s FROM Scalers s WHERE s.email = ?1 AND s.password = ?2")
     Scalers findByEmailAndPassword(String email, String password);
+
+
 }

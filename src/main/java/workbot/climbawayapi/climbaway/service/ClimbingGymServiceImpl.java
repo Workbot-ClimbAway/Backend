@@ -3,8 +3,10 @@ package workbot.climbawayapi.climbaway.service;
 import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.Category;
 import workbot.climbawayapi.climbaway.domain.model.entity.ClimbingGym;
+import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
 import workbot.climbawayapi.climbaway.domain.persistence.CategoryRepository;
 import workbot.climbawayapi.climbaway.domain.persistence.ClimbingGymRepository;
+import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
 import workbot.climbawayapi.climbaway.domain.service.ClimbingGymService;
 import workbot.climbawayapi.shared.exception.ResourceNotFoundException;
 import workbot.climbawayapi.shared.exception.ResourceValidationException;
@@ -22,13 +24,15 @@ public class ClimbingGymServiceImpl implements ClimbingGymService {
 
     private final ClimbingGymRepository climbingGymRepository;
     private final CategoryRepository categoryRepository;
+    private final ScalersRepository scalersRepository;
     private final Validator validator;
 
     public ClimbingGymServiceImpl(ClimbingGymRepository climbingGymRepository,
                                   CategoryRepository categoryRepository,
-                                  Validator validator) {
+                                  ScalersRepository scalersRepository, Validator validator) {
         this.climbingGymRepository = climbingGymRepository;
         this.categoryRepository = categoryRepository;
+        this.scalersRepository = scalersRepository;
         this.validator = validator;
     }
 
@@ -115,5 +119,52 @@ public class ClimbingGymServiceImpl implements ClimbingGymService {
         }
         climbingGymRepository.deleteById(id);
         return isExisting;
+    }
+
+    @Override
+    public List<ClimbingGym> findClimbingGymsByScalerId(long id) {
+        return climbingGymRepository.findClimbingGymsByScalerId(id);
+    }
+
+    @Override
+    public List<ClimbingGym> createClimbingGymScaler(long id, long scalerId) {
+        var climbingGym = climbingGymRepository.findById(id);
+        if (climbingGym == null) {
+            throw new ResourceNotFoundException("ClimbingGym not found");
+        }
+        var scaler = scalersRepository.findById(scalerId);
+        if (scaler == null) {
+            throw new ResourceNotFoundException("Scaler not found");
+        }
+
+        if (climbingGym.getScaler().contains(scaler)) {
+            throw new ResourceNotFoundException("Favorite already exists");
+        }
+        Set<Scalers> scalers = climbingGym.getScaler();
+        scalers.add(scaler);
+        climbingGym.setScaler(scalers);
+        climbingGymRepository.save(climbingGym);
+        return climbingGymRepository.findClimbingGymsByScalerId(scalerId);
+    }
+
+    @Override
+    public List<ClimbingGym> deleteClimbingGymScaler(long id, long scalerId) {
+        var climbingGym = climbingGymRepository.findById(id);
+        if (climbingGym == null) {
+            throw new ResourceNotFoundException("ClimbingGym not found");
+        }
+        var scaler = scalersRepository.findById(scalerId);
+        if (scaler == null) {
+            throw new ResourceNotFoundException("Scaler not found");
+        }
+
+        if (!climbingGym.getScaler().contains(scaler)) {
+            throw new ResourceNotFoundException("Favorite not found");
+        }
+        Set<Scalers> scalers = climbingGym.getScaler();
+        scalers.remove(scaler);
+        climbingGym.setScaler(scalers);
+        climbingGymRepository.save(climbingGym);
+        return climbingGymRepository.findClimbingGymsByScalerId(scalerId);
     }
 }

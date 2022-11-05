@@ -58,9 +58,25 @@ public class ClimbingGymController {
         return climbingGymMapper.toResource(climbingGymService.delete(id));
     }
 
-    @PostMapping(value = "/{id}/categories/{categoryId}")
+    @PostMapping(value = "/climbing-gym-categories/climbing-gym/{id}/categories/{categoryId}")
     public List<CategoryResource> assignCategory(@PathVariable Long id, @PathVariable Long categoryId){
         return categoryMapper.toResource(climbingGymService.createClimbingGymCategory(id, categoryId));
+    }
+
+    //Favorites
+    @GetMapping(value = "/favorites/scalers/{id}")
+    public List<ClimbingGymResource> findClimbingGymsByScalerId(@PathVariable Long id){
+        return climbingGymMapper.toResource(climbingGymService.findClimbingGymsByScalerId(id));
+    }
+
+    @PostMapping(value = "/favorites/climbing-gym/{id}/scaler/{scalerId}")
+    public List<ClimbingGymResource> assignScaler(@PathVariable Long id, @PathVariable Long scalerId){
+        return climbingGymMapper.toResource(climbingGymService.createClimbingGymScaler(id, scalerId));
+    }
+
+    @DeleteMapping(value = "/favorites/climbing-gym/{id}/scaler/{scalerId}")
+    public List<ClimbingGymResource> deleteScaler(@PathVariable Long id, @PathVariable Long scalerId){
+        return climbingGymMapper.toResource(climbingGymService.deleteClimbingGymScaler(id, scalerId));
     }
 
 }

@@ -15,4 +15,8 @@ public interface ClimbingGymService {
     List<Category> createClimbingGymCategory(long id, long categoryId);
     ClimbingGym update(long id, ClimbingGym climbingGym);
     ClimbingGym delete(long id);
+    //Favorites
+    List<ClimbingGym> findClimbingGymsByScalerId(long id);
+    List<ClimbingGym> createClimbingGymScaler(long id, long scalerId);
+    List<ClimbingGym> deleteClimbingGymScaler(long id, long scalerId);
 }

@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "scalers")
@@ -60,4 +62,36 @@ public class Scalers implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "scaler",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notification> notifications;
+
+    // Relationships
+    @JsonBackReference
+    @ManyToMany(mappedBy = "scaler", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ClimbingGym> climbingGyms = new HashSet<>();
+
+    // Comments
+    @JsonIgnore
+    @OneToMany(mappedBy = "scaler",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
+    // Leagues
+    @JsonIgnore
+    @OneToMany(mappedBy = "scaler",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<League> leagues;
+
+    // Requests
+    @ManyToMany
+    @JoinTable(name = "requests",
+            joinColumns = @JoinColumn(name = "scaler_id"),
+            inverseJoinColumns = @JoinColumn(name = "league_id"))
+    private Set<League> leagues_requested = new HashSet<>();
+
+    //Climbers-leagues
+    @JsonIgnore
+    @OneToMany(mappedBy = "scale",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Member> memberLeagues;
+
+    //Competition_leagues_rankings
+    @JsonIgnore
+    @OneToMany(mappedBy = "scale",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CompetitionLeagueRanking> competitionLeagueRankings;
 }

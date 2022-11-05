@@ -21,4 +21,20 @@ public class MappingConfiguration {
     public ScalersMapper scalersMapper(){
         return new ScalersMapper();
     }
+    @Bean
+    public NewsMapper newsMapper(){ return new NewsMapper(); }
+    @Bean
+    public CommentMapper commentMapper(){ return new CommentMapper(); }
+    @Bean
+    public ImageMapper imageMapper(){ return new ImageMapper(); }
+    @Bean
+    public LeagueMapper leagueMapper(){ return new LeagueMapper(); }
+    @Bean
+    public MemberMapper memberMapper(){ return new MemberMapper(); }
+    @Bean
+    public CompetitionLeagueMapper competitionLeagueMapper(){ return new CompetitionLeagueMapper(); }
+    @Bean
+    public CompetitionLeagueRankingMapper competitionLeagueRankingMapper(){ return new CompetitionLeagueRankingMapper(); }
+    @Bean
+    public FeatureMapper featureMapper(){ return new FeatureMapper(); }
 }

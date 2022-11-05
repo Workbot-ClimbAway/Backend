@@ -7,7 +7,6 @@ import java.util.List;
 
 @Service
 public interface NotificationService {
-
     List<Notification> getAll();
     Notification findById(long id); 
     List<Notification> findByScalerId(long id);
