@@ -23,13 +23,15 @@ public class LeagueServiceImpl implements LeagueService {
     private final ScalersRepository scalersRepository;
     private final ClimbingGymRepository climbingGymRepository;
     private final MemberService memberService;
+    private final MembersRepository membersRepository;
     private final Validator validator;
 
-    public LeagueServiceImpl(LeagueRepository leagueRepository, ScalersRepository scalersRepository, ClimbingGymRepository climbingGymRepository, MemberService memberService, Validator validator) {
+    public LeagueServiceImpl(LeagueRepository leagueRepository, ScalersRepository scalersRepository, ClimbingGymRepository climbingGymRepository, MemberService memberService, MembersRepository membersRepository, Validator validator) {
         this.leagueRepository = leagueRepository;
         this.scalersRepository = scalersRepository;
         this.climbingGymRepository = climbingGymRepository;
         this.memberService = memberService;
+        this.membersRepository = membersRepository;
         this.validator = validator;
     }
 
@@ -120,7 +122,8 @@ public class LeagueServiceImpl implements LeagueService {
         if (league == null) {
             throw new ResourceNotFoundException("League not found");
         }
-        leagueRepository.delete(league);
+        membersRepository.deleteByLeagueId(id);
+        leagueRepository.deleteByLeagueId(id);
         return league;
     }
 

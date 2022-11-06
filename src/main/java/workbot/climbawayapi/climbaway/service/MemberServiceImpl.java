@@ -118,10 +118,9 @@ public class MemberServiceImpl implements MemberService {
         if (member==null) {
             throw new IllegalArgumentException("Member does not exist");
         }
-        //isLeague.setNumberParticipants(isLeague.getNumberParticipants()-1);
-        // Falta arreglar
-            membersRepository.delete(member);
-        //leagueRepository.save(isLeague);
+        membersRepository.deleteByClimbingGymIdAndLeagueIdAndScalerId(climbingGymId, leagueId, scalerId);
+        isLeague.setNumberParticipants(isLeague.getNumberParticipants()-1);
+        leagueRepository.save(isLeague);
         return member;
     }
 }

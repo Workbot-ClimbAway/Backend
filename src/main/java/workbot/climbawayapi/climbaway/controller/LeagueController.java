@@ -53,11 +53,6 @@ public class LeagueController {
         return leagueMapper.toResource(leagueService.updateNumberParticipants(id, scalerId));
     }
 
-    @DeleteMapping(value = "/{id}/scaler/{scalerId}")
-    public LeagueResource deleteParticipant(@PathVariable Long id, @PathVariable Long scalerId){
-        return leagueMapper.toResource(leagueService.deleteParticipant(id, scalerId));
-    }
-
     @DeleteMapping(value = "/{id}")
     public LeagueResource deleteLeague(@PathVariable Long id){
         return leagueMapper.toResource(leagueService.delete(id));

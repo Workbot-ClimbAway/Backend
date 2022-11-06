@@ -2,8 +2,10 @@ package workbot.climbawayapi.climbaway.domain.persistence;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
 
 import java.util.List;
@@ -29,4 +31,10 @@ public interface LeagueRepository extends JpaRepository<League, Long> {
 
     @Query(value ="SELECT l FROM League l Join fetch l.scaler_leagues sl Join fetch sl.leagues_requested s WHERE l.id = ?1 AND sl.id = ?2")
     League findRequestByScalerIdAndLeagueId(long scaleId, long leagueId);
+
+    // Delete by league id
+    @Modifying
+    @Transactional
+    @Query(value ="DELETE FROM League l WHERE l.id = ?1")
+    void deleteByLeagueId(long id);
 }
