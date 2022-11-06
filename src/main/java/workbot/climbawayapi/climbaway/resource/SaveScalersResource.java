@@ -34,6 +34,10 @@ public class SaveScalersResource {
     private String url_photo;
 
     @NotBlank
+    @Size(max = 1000)
+    private String address;
+
+    @NotBlank
     @Size(max = 100)
     private String email;
 }

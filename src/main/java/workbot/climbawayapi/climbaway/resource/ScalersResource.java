@@ -8,18 +8,13 @@ import lombok.Setter;
 public class ScalersResource {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String password;
-
     private String city;
-
     private String district;
-
     private String url_photo;
-
+    private String address;
     private String email;
+
 }

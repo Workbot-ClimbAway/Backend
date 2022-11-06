@@ -42,13 +42,6 @@ public class ScalersServicelmpl implements ScalersService {
 
     @Override
     public Scalers create(Scalers scalers) {
-        System.out.println(scalers.getCity());
-        System.out.println(scalers.getUrl_photo());
-        System.out.println(scalers.getDistrict());
-        System.out.println(scalers.getLastName());
-        System.out.println(scalers.getFirstName());
-        System.out.println(scalers.getEmail());
-        System.out.println(scalers.getPassword());
         Set<ConstraintViolation<Scalers>> violations = validator.validate(scalers);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
@@ -77,6 +70,7 @@ public class ScalersServicelmpl implements ScalersService {
         scalerUpdate.setCity(scalers.getCity());
         scalerUpdate.setDistrict(scalers.getDistrict());
         scalerUpdate.setUrl_photo(scalers.getUrl_photo());
+        scalerUpdate.setAddress(scalers.getAddress());
         scalerUpdate.setEmail(scalers.getEmail());
 
         return scalersRepository.save(scalerUpdate);
