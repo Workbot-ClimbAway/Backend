@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/features")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class FeatureController {
     private final FeatureService featureService;
     private final FeatureMapper featureMapper;

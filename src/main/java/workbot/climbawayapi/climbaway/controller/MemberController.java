@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/members")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;

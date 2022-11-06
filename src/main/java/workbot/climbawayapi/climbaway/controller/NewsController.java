@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/news")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class NewsController {
     private final NewsService newsService;
     private final NewsMapper newsMapper;

@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/categories")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryMapper categoryMapper;

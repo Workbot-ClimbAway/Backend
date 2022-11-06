@@ -15,6 +15,8 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/competition-league-rankings")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+
 public class CompetitionLeagueRankingController {
     private final CompetitionLeagueRankingService competitionLeagueRankingService;
     private final ScalersMapper scalersMapper;

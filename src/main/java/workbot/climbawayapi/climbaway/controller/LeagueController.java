@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/api/v1/league")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class LeagueController {
 
     private  final LeagueService leagueService;
