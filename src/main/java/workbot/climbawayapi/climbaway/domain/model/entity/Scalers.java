@@ -64,6 +64,11 @@ public class Scalers implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @NotNull
+    @NotBlank
+    @Column(name = "phone")
+    private String phone;
+
     @JsonIgnore
     @OneToMany(mappedBy = "scaler",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notification> notifications;

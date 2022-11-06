@@ -16,5 +16,6 @@ public class ScalersResource {
     private String url_photo;
     private String address;
     private String email;
+    private String phone;
 
 }

@@ -2,6 +2,7 @@ package workbot.climbawayapi.climbaway.domain.service;
 
 import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
+import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface LeagueService {
 
     // Requests
     List<League> findRequestsByScalerId(Long scaleId);
-    List<League> findRequestsByLeagueId(long leagueId);
+    List<Scalers> findRequestsByLeagueId(long leagueId);
     League createRequest(Long leagueId, Long scaleId);
     League acceptRequest(Long leagueId, Long scaleId);
     League rejectRequest(Long leagueId, Long scaleId);

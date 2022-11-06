@@ -2,11 +2,12 @@ package workbot.climbawayapi.climbaway.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import workbot.climbawayapi.climbaway.domain.model.entity.League;
 import workbot.climbawayapi.climbaway.domain.service.LeagueService;
 import workbot.climbawayapi.climbaway.mapping.LeagueMapper;
+import workbot.climbawayapi.climbaway.mapping.ScalersMapper;
 import workbot.climbawayapi.climbaway.resource.LeagueResource;
 import workbot.climbawayapi.climbaway.resource.SaveLeagueResource;
+import workbot.climbawayapi.climbaway.resource.ScalersResource;
 
 import java.util.List;
 
@@ -18,10 +19,12 @@ public class LeagueController {
 
     private  final LeagueService leagueService;
     private  final LeagueMapper leagueMapper;
+    private final ScalersMapper scalersMapper;
 
-    public LeagueController(LeagueService leagueService, LeagueMapper leagueMapper) {
+    public LeagueController(LeagueService leagueService, LeagueMapper leagueMapper, ScalersMapper scalersMapper) {
         this.leagueService = leagueService;
         this.leagueMapper = leagueMapper;
+        this.scalersMapper = scalersMapper;
     }
 
     @GetMapping
@@ -66,9 +69,9 @@ public class LeagueController {
         return leagueMapper.toResource(leagueService.findRequestsByScalerId(id));
     }
 
-    @GetMapping(value = "/request/league/{id}")
-    public List<LeagueResource> findRequestsByLeagueId(@PathVariable Long id){
-        return leagueMapper.toResource(leagueService.findRequestsByLeagueId(id));
+    @GetMapping(value = "/{id}/request")
+    public List<ScalersResource> findRequestsByLeagueId(@PathVariable Long id){
+        return scalersMapper.toResource(leagueService.findRequestsByLeagueId(id));
     }
 
     @PostMapping(value = "/request/league/{id}/scaler/{scalerId}")

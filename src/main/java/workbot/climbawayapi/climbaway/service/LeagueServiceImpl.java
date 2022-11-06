@@ -3,6 +3,7 @@ package workbot.climbawayapi.climbaway.service;
 import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
 import workbot.climbawayapi.climbaway.domain.model.entity.Member;
+import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
 import workbot.climbawayapi.climbaway.domain.persistence.ClimbingGymRepository;
 import workbot.climbawayapi.climbaway.domain.persistence.LeagueRepository;
 import workbot.climbawayapi.climbaway.domain.persistence.MembersRepository;
@@ -133,7 +134,7 @@ public class LeagueServiceImpl implements LeagueService {
     }
 
     @Override
-    public List<League> findRequestsByLeagueId(long leagueId) {
+    public List<Scalers> findRequestsByLeagueId(long leagueId) {
         return leagueRepository.findRequestsByLeagueId(leagueId);
     }
     @Override

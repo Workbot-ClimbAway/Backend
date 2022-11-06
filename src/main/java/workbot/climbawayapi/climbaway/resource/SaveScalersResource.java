@@ -40,4 +40,8 @@ public class SaveScalersResource {
     @NotBlank
     @Size(max = 100)
     private String email;
+
+    @NotBlank
+    @Size(max = 100)
+    private String phone;
 }

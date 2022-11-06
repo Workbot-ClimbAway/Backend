@@ -72,6 +72,7 @@ public class ScalersServicelmpl implements ScalersService {
         scalerUpdate.setUrl_photo(scalers.getUrl_photo());
         scalerUpdate.setAddress(scalers.getAddress());
         scalerUpdate.setEmail(scalers.getEmail());
+        scalerUpdate.setPhone(scalers.getPhone());
 
         return scalersRepository.save(scalerUpdate);
     }
