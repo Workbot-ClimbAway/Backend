@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
 import workbot.climbawayapi.climbaway.domain.model.entity.Member;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import java.util.List;
 

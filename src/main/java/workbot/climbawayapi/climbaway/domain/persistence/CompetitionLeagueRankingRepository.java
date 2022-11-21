@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import workbot.climbawayapi.climbaway.domain.model.entity.CompetitionLeagueRanking;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import java.util.List;
 

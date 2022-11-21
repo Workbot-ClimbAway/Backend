@@ -2,9 +2,9 @@ package workbot.climbawayapi.climbaway.service;
 
 import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.CompetitionLeagueRanking;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 import workbot.climbawayapi.climbaway.domain.persistence.CompetitionLeagueRankingRepository;
-import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
+import workbot.climbawayapi.security.domain.persistence.ScalersRepository;
 import workbot.climbawayapi.climbaway.domain.service.CompetitionLeagueRankingService;
 import workbot.climbawayapi.climbaway.domain.service.CompetitionLeagueService;
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

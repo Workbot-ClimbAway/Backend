@@ -1,9 +1,10 @@
-package workbot.climbawayapi.climbaway.service;
+package workbot.climbawayapi.security.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
-import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
-import workbot.climbawayapi.climbaway.domain.service.ScalersService;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.persistence.ScalersRepository;
+import workbot.climbawayapi.security.domain.service.ScalersService;
 import workbot.climbawayapi.shared.exception.ResourceNotFoundException;
 import workbot.climbawayapi.shared.exception.ResourceValidationException;
 
@@ -35,7 +36,7 @@ public class ScalersServicelmpl implements ScalersService {
     public Scalers findById(long id) {
         var isExisting = scalersRepository.findById(id);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Notification not found");
+            throw new ResourceNotFoundException("Scaler not found");
         }
         return isExisting;
     }
@@ -46,6 +47,7 @@ public class ScalersServicelmpl implements ScalersService {
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
         scalers.setNotifications(null);
+        scalers.setPassword(new BCryptPasswordEncoder().encode(scalers.getPassword()));
         return scalersRepository.save(scalers);
     }
 
@@ -53,16 +55,25 @@ public class ScalersServicelmpl implements ScalersService {
     public Scalers findByEmailAndPassword(String email, String password) {
         var isExisting = scalersRepository.findByEmailAndPassword(email,password);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Notification not found");
+            throw new ResourceNotFoundException("Scaler not found");
         }
         return isExisting;
+    }
+
+    @Override
+    public Scalers findByEmail(String email) {
+        Scalers user = scalersRepository.findByEmail(email);
+        if (user == null) {
+            throw new ResourceNotFoundException("El usuario con el email " + email + " no existe");
+        }
+        return user;
     }
 
     @Override
     public Scalers update(long id, Scalers scalers) {
         var scalerUpdate = scalersRepository.findById(id);
         if (scalerUpdate == null) {
-            throw new ResourceNotFoundException("Notification not found");
+            throw new ResourceNotFoundException("Scaler not found");
         }
         scalerUpdate.setFirstName(scalers.getFirstName());
         scalerUpdate.setLastName(scalers.getLastName());
@@ -81,7 +92,7 @@ public class ScalersServicelmpl implements ScalersService {
     public Scalers delete(long id) {
         var isExisting = scalersRepository.findById(id);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Notification not found");
+            throw new ResourceNotFoundException("Scaler not found");
         }
         scalersRepository.deleteById(id);
         return isExisting;

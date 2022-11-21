@@ -1,12 +1,9 @@
-package workbot.climbawayapi.climbaway.mapping;
+package workbot.climbawayapi.security.mapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import workbot.climbawayapi.climbaway.domain.model.entity.ClimbingGym;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
-import workbot.climbawayapi.climbaway.resource.ClimbingGymResource;
-import workbot.climbawayapi.climbaway.resource.SaveClimbingGymResource;
-import workbot.climbawayapi.climbaway.resource.SaveScalersResource;
-import workbot.climbawayapi.climbaway.resource.ScalersResource;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.resource.SaveScalersResource;
+import workbot.climbawayapi.security.resource.ScalersResource;
 import workbot.climbawayapi.shared.mapping.EnhancedModelMapper;
 
 import java.io.Serializable;

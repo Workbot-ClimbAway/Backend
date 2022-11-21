@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.Comment;
 import workbot.climbawayapi.climbaway.domain.persistence.ClimbingGymRepository;
 import workbot.climbawayapi.climbaway.domain.persistence.CommentRepository;
-import workbot.climbawayapi.climbaway.domain.persistence.ScalersRepository;
+import workbot.climbawayapi.security.domain.persistence.ScalersRepository;
 import workbot.climbawayapi.climbaway.domain.service.CommentService;
 import workbot.climbawayapi.shared.exception.ResourceValidationException;
 

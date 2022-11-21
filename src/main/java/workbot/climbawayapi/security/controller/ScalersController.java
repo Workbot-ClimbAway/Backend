@@ -1,11 +1,11 @@
-package workbot.climbawayapi.climbaway.controller;
+package workbot.climbawayapi.security.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import workbot.climbawayapi.climbaway.domain.service.ScalersService;
-import workbot.climbawayapi.climbaway.mapping.ScalersMapper;
-import workbot.climbawayapi.climbaway.resource.ScalersResource;
-import workbot.climbawayapi.climbaway.resource.SaveScalersResource;
+import workbot.climbawayapi.security.domain.service.ScalersService;
+import workbot.climbawayapi.security.mapping.ScalersMapper;
+import workbot.climbawayapi.security.resource.ScalersResource;
+import workbot.climbawayapi.security.resource.SaveScalersResource;
 
 import java.util.List;
 

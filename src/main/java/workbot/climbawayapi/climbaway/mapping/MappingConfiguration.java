@@ -2,9 +2,11 @@ package workbot.climbawayapi.climbaway.mapping;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import workbot.climbawayapi.security.mapping.ScalersMapper;
 
 @Configuration("reservingMappingConfiguration")
 public class MappingConfiguration {
+
     @Bean
     public ClimbingGymMapper climbingGymMapper(){
         return new ClimbingGymMapper();
@@ -16,10 +18,6 @@ public class MappingConfiguration {
     @Bean
     public NotificationsMapper notificationMapper(){
         return new NotificationsMapper();
-    }
-    @Bean
-    public ScalersMapper scalersMapper(){
-        return new ScalersMapper();
     }
     @Bean
     public NewsMapper newsMapper(){ return new NewsMapper(); }

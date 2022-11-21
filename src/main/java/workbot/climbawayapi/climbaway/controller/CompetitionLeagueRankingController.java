@@ -3,12 +3,11 @@ package workbot.climbawayapi.climbaway.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.CompetitionLeagueRankingService;
-import workbot.climbawayapi.climbaway.domain.service.ScalersService;
 import workbot.climbawayapi.climbaway.mapping.CompetitionLeagueRankingMapper;
-import workbot.climbawayapi.climbaway.mapping.ScalersMapper;
+import workbot.climbawayapi.security.mapping.ScalersMapper;
 import workbot.climbawayapi.climbaway.resource.CompetitionLeagueRankingResource;
 import workbot.climbawayapi.climbaway.resource.SaveCompetitionLeagueRankingResource;
-import workbot.climbawayapi.climbaway.resource.ScalersResource;
+import workbot.climbawayapi.security.resource.ScalersResource;
 
 import java.util.List;
 

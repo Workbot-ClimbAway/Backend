@@ -2,6 +2,7 @@ package workbot.climbawayapi.climbaway.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

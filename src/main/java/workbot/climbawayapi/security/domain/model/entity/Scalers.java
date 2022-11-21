@@ -1,8 +1,9 @@
-package workbot.climbawayapi.climbaway.domain.model.entity;
+package workbot.climbawayapi.security.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import workbot.climbawayapi.climbaway.domain.model.entity.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

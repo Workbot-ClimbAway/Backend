@@ -1,4 +1,4 @@
-package workbot.climbawayapi.climbaway.resource;
+package workbot.climbawayapi.security.resource;
 
 import lombok.Getter;
 import lombok.Setter;

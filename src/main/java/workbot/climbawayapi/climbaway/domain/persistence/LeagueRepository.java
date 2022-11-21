@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public interface LeagueRepository extends JpaRepository<League, Long> {
     @Query(value ="SELECT l FROM League l")
     List<League> getAll();
 
-    @Query(value ="SELECT l FROM League l WHERE l.climbingGymId = ?1")
+    @Query(value ="SELECT l FROM League l WHERE l.climbingGym.id = ?1")
     List<League> findByClimbingGymId(long climbingGymId);
 
     //Leagues and requests

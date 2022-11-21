@@ -3,7 +3,7 @@ package workbot.climbawayapi.climbaway.domain.service;
 import org.springframework.stereotype.Service;
 import workbot.climbawayapi.climbaway.domain.model.entity.League;
 import workbot.climbawayapi.climbaway.domain.model.entity.Member;
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import java.util.List;
 

@@ -1,12 +1,9 @@
-package workbot.climbawayapi.climbaway.domain.service;
+package workbot.climbawayapi.security.domain.service;
 
 import org.springframework.stereotype.Service;
 
 
-import workbot.climbawayapi.climbaway.domain.model.entity.Notification;
-
-
-import workbot.climbawayapi.climbaway.domain.model.entity.Scalers;
+import workbot.climbawayapi.security.domain.model.entity.Scalers;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public interface ScalersService {
     Scalers findById(long id); 
     Scalers create(Scalers scalers);
     Scalers findByEmailAndPassword(String email, String password);
+    Scalers findByEmail(String email);
     Scalers update(long id, Scalers scalers);
     Scalers delete(long id);
 }

@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import workbot.climbawayapi.climbaway.domain.service.MemberService;
 import workbot.climbawayapi.climbaway.mapping.LeagueMapper;
 import workbot.climbawayapi.climbaway.mapping.MemberMapper;
-import workbot.climbawayapi.climbaway.mapping.ScalersMapper;
+import workbot.climbawayapi.security.mapping.ScalersMapper;
 import workbot.climbawayapi.climbaway.resource.LeagueResource;
 import workbot.climbawayapi.climbaway.resource.MemberResource;
 import workbot.climbawayapi.climbaway.resource.SaveMemberResource;
-import workbot.climbawayapi.climbaway.resource.ScalersResource;
+import workbot.climbawayapi.security.resource.ScalersResource;
 
 import java.util.List;
 
