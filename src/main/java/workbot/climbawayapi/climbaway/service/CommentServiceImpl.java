@@ -56,11 +56,11 @@ public class CommentServiceImpl implements CommentService {
     public Comment create(Comment comment, long climbingGymId, long scaleId) {
         var isExist = climbingGymRepository.findById(climbingGymId);
         if (isExist == null) {
-            throw new RuntimeException("Climbing gym not found");
+            throw new RuntimeException("Climbing gym yet not found");
         }
         var isScalerExist = scalersRepository.findById(scaleId);
         if (isScalerExist == null) {
-            throw new RuntimeException("Scaler not found");
+            throw new RuntimeException("Scaler yet not found");
         }
         comment.setDate(new Date());
         comment.setClimbingGym(isExist);
@@ -93,7 +93,7 @@ public class CommentServiceImpl implements CommentService {
     public Comment delete(long id) {
         var isExist = commentRepository.findById(id);
         if (isExist == null) {
-            throw new RuntimeException("Comment not found");
+            throw new RuntimeException("Comment yet not found");
         }
         commentRepository.deleteById(id);
         return isExist;

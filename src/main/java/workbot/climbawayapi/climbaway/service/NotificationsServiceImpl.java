@@ -47,7 +47,7 @@ public class NotificationsServiceImpl implements NotificationService {
     public List<Notification> findByScalerId(long id) {
         var isExisting = scalersRepository.findById(id);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Scaler not found");
+            throw new ResourceNotFoundException("Scaler yet not found");
         }
         return notificationRepository.findByScalerId(id);
     }
@@ -56,7 +56,7 @@ public class NotificationsServiceImpl implements NotificationService {
     public Notification create(Notification notification, long scalerId) {
         var isExisting = scalersRepository.findById(scalerId);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Scaler not found");
+            throw new ResourceNotFoundException("Scaler yet not found");
         }
         notification.setScalerId(scalerId);
         notification.setScaler(isExisting);
@@ -70,7 +70,7 @@ public class NotificationsServiceImpl implements NotificationService {
     public Notification delete(long id) {
         var isExisting = notificationRepository.findById(id);
         if (isExisting == null) {
-            throw new ResourceNotFoundException("Notification not found");
+            throw new ResourceNotFoundException("Notification yet not found");
         }
         notificationRepository.deleteById(id);
         return isExisting;
