@@ -40,7 +40,7 @@ public class FeatureServiceImpl implements FeatureService {
             throw new IllegalArgumentException("Climbing gym does not exist");
         }
         var isExistingFeature = featureRepository.findByClimbingGymId(climbingGymId);
-        if (isExistingFeature != null) {
+        if (isExistingFeature.size() > 0) {
             throw new IllegalArgumentException("Feature already exists");
         }
         feature.setClimbingGym(isExistingClimbingGym);
