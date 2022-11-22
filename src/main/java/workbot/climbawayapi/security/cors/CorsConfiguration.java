@@ -9,10 +9,9 @@ public class CorsConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE")
+        registry.addMapping("/**")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedOrigins("*")
-                .allowedHeaders("*")
-                .allowCredentials(false)
-                .maxAge(-1);
+                .allowedHeaders("*");
     }
 }
