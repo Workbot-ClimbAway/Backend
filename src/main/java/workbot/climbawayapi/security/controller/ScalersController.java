@@ -22,7 +22,6 @@ public class ScalersController {
         this.scalersMapper = scalersMapper;
     }
 
-
     @GetMapping
     public List<ScalersResource> getAllScalers(){
         return scalersMapper.toResource(scalersService.getAll());
@@ -31,6 +30,11 @@ public class ScalersController {
     @GetMapping(value = "/{id}")
     public ScalersResource findScalersById(@PathVariable Long id){
         return scalersMapper.toResource(scalersService.findById(id));
+    }
+
+    @GetMapping(value = "/email/{email}")
+    public ScalersResource findScalersByEmail(@PathVariable String email){
+        return scalersMapper.toResource(scalersService.findByEmail(email));
     }
 
     @PostMapping

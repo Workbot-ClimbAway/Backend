@@ -30,13 +30,19 @@ public class WebSecurityConfig {
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
         System.out.println(authManager.getClass().getName());
+        // cors().and().csrf().disable()
         jwtAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
-        return http.csrf().disable()
+
+        return http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
                 .permitAll()
                 .antMatchers("/api/v1/scaler**")
                 .anonymous()
+                .antMatchers("/api/v1/scaler/**")
+                .anonymous()
+                .antMatchers("/api/v1/login")
+                .permitAll()
                 .antMatchers("/api/v1/climbing-gym**")
                 .anonymous()
                 .antMatchers("/api/v1/categories**")

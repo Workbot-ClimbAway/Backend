@@ -14,6 +14,7 @@ import java.util.List;
 public interface ScalersRepository extends JpaRepository<Scalers, Long> {
 
     Scalers findById(long id);
+    @Query(value ="SELECT s FROM Scalers s WHERE s.email = ?1")
     Scalers findByEmail(String email);
 
     @Query(value ="SELECT s FROM Scalers s ")
