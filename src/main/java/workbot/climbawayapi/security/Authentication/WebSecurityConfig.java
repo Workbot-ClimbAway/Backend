@@ -51,7 +51,7 @@ public class WebSecurityConfig {
                 .anonymous()
                 .antMatchers("/api/v1/categories/**")
                 .anonymous()
-                .antMatchers("/api/v1/news**")
+                .antMatchers("/api/v1/news/climbingGym/**")
                 .anonymous()
                 .antMatchers("/api/v1/images**")
                 .anonymous()
