@@ -12,11 +12,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMethod;
 import workbot.climbawayapi.security.jwt.JWTAuthenticationFilter;
 import workbot.climbawayapi.security.jwt.JWTAuthorizationFilter;
 
 @Configuration
 @AllArgsConstructor
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
